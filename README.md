@@ -1,36 +1,148 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tattoo Removal Calculator
 
-## Getting Started
+一个专业的纹身移除价格计算器网站，帮助用户快速估算纹身移除成本，了解影响价格的各种因素，获得专业的建议和指导。
 
-First, run the development server:
+## 🚀 功能特点
 
+### 核心功能
+- **智能价格计算器**：根据纹身尺寸、颜色、位置、年龄和皮肤类型等因素计算价格
+- **价格透明度**：详细的价格明细展示，包括基础费用、治疗次数、地区差异等
+- **治疗方案选择**：提供激光移除、手术切除等多种方案
+- **效果预期**：不同治疗方法的成功率预估
+
+### 用户教育
+- **治疗过程详解**：完整的纹身移除流程说明
+- **疼痛与风险管理**：客观的疼痛说明和风险提示
+- **家庭移除指导**：针对临时纹身和DIY方法的专业建议
+- **术后护理指导**：详细的护理建议
+
+### 用户体验
+- **响应式设计**：完美适配桌面端和移动端
+- **现代化UI**：使用Tailwind CSS和shadcn/ui组件
+- **直观操作**：滑块、下拉选择等友好的交互方式
+- **实时计算**：即时显示价格估算结果
+
+## 🛠️ 技术栈
+
+- **前端框架**：Next.js 15 + React 19
+- **样式框架**：Tailwind CSS 4
+- **UI组件**：shadcn/ui + Radix UI
+- **图标库**：Lucide React
+- **开发语言**：TypeScript
+- **部署平台**：Vercel
+
+## 📦 安装和运行
+
+### 环境要求
+- Node.js 18+ 
+- npm 或 yarn
+
+### 安装依赖
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 开发模式
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 构建生产版本
+```bash
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 启动生产服务器
+```bash
+npm start
+```
 
-## Learn More
+## 🎯 项目结构
 
-To learn more about Next.js, take a look at the following resources:
+```
+tattoo-removal-calculator/
+├── app/                    # Next.js App Router
+│   ├── globals.css        # 全局样式
+│   ├── layout.tsx         # 根布局
+│   └── page.tsx           # 主页面
+├── components/            # React组件
+│   ├── ui/               # shadcn/ui基础组件
+│   ├── header.tsx        # 导航栏
+│   ├── footer.tsx        # 页脚
+│   ├── price-calculator.tsx  # 价格计算器
+│   └── info-section.tsx  # 信息展示
+├── lib/                  # 工具函数
+│   └── utils.ts          # 通用工具
+├── public/               # 静态资源
+└── PRD.md               # 产品需求文档
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎨 设计理念
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 用户需求导向
+基于用户搜索行为分析，重点关注：
+- **价格透明度**：回应用户对"how much does tattoo removal cost"的搜索
+- **过程了解**：解答"how many sessions"、"how long does it take"等问题
+- **疼痛担忧**：回应"does tattoo removal hurt"、"does tattoo removal leave scars"等关切
+- **替代方案**：针对"how to remove tattoo at home"等搜索提供专业建议
 
-## Deploy on Vercel
+### 专业可信
+- 提供准确的价格计算算法
+- 客观的风险和疼痛说明
+- 专业的治疗建议
+- 透明的价格明细
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 用户体验
+- 简洁直观的界面设计
+- 流畅的交互体验
+- 响应式布局适配
+- 快速的价格计算
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📊 价格计算算法
+
+### 基础价格
+- 基础价格：50元/平方厘米
+
+### 影响因素
+1. **尺寸倍数**：小面积(≤5cm²) 1.2x，中等面积(5-10cm²) 1.0x，大面积(>20cm²) 0.8x
+2. **颜色倍数**：黑色 1.0x，彩色 1.5x，白色 1.8x，混合色 1.3x
+3. **位置倍数**：手臂/腿部 1.0x，面部 1.5x，手部 1.4x，脚部 1.3x
+4. **年龄倍数**：新纹身(≤1年) 1.3x，老纹身(>5年) 0.9x
+5. **皮肤类型倍数**：白皙皮肤 1.2x，深色皮肤 0.7x
+
+### 治疗次数估算
+- 黑色纹身：每3cm²约1次治疗
+- 彩色纹身：每2cm²约1次治疗 + 2次基础治疗
+
+## 🔮 未来规划
+
+### 功能扩展
+- [ ] 图片上传和分析功能
+- [ ] 用户账户系统
+- [ ] 诊所推荐和评价系统
+- [ ] 预约功能
+- [ ] 多语言支持
+
+### 技术升级
+- [ ] AI智能诊断
+- [ ] 3D纹身预览
+- [ ] 虚拟咨询
+- [ ] 移动应用
+
+## 📄 许可证
+
+MIT License
+
+## 🤝 贡献
+
+欢迎提交Issue和Pull Request来改进这个项目！
+
+## 📞 联系我们
+
+- 邮箱：info@tattooremoval.com
+- 电话：400-123-4567
+- 地址：北京市朝阳区
+
+---
+
+**注意**：此价格计算器提供的价格仅为估算，实际价格可能因诊所、地区和个人情况而异。建议咨询专业医生获得准确报价。
