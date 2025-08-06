@@ -7,12 +7,9 @@ import { AlertTriangle, Clock, DollarSign, Heart, Shield, Users } from "lucide-r
 export function InfoSection() {
   return (
     <div className="max-w-6xl mx-auto p-6 space-y-12 relative">
-      {/* 背景装饰 */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-white/50 to-purple-50/50"></div>
-      <div className="relative z-10">
       {/* 特色功能 */}
       <div className="grid md:grid-cols-3 gap-8">
-        <Card className="text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-white/90 backdrop-blur-sm border-0">
+        <Card className="text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 glass-effect backdrop-blur-sm border-0">
           <CardHeader>
             <div className="mx-auto w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center mb-4 shadow-lg">
               <DollarSign className="h-8 w-8 text-white" />
@@ -26,7 +23,7 @@ export function InfoSection() {
           </CardContent>
         </Card>
 
-        <Card className="text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-white/90 backdrop-blur-sm border-0">
+        <Card className="text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 glass-effect backdrop-blur-sm border-0">
           <CardHeader>
             <div className="mx-auto w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mb-4 shadow-lg">
               <Shield className="h-8 w-8 text-white" />
@@ -40,7 +37,7 @@ export function InfoSection() {
           </CardContent>
         </Card>
 
-        <Card className="text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-white/90 backdrop-blur-sm border-0">
+        <Card className="text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 glass-effect backdrop-blur-sm border-0">
           <CardHeader>
             <div className="mx-auto w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center mb-4 shadow-lg">
               <Users className="h-8 w-8 text-white" />
@@ -57,7 +54,7 @@ export function InfoSection() {
 
       {/* 详细知识库 */}
       <Tabs defaultValue="process" className="w-full">
-        <TabsList className="grid w-full grid-cols-4 bg-white/80 backdrop-blur-sm shadow-lg border-0">
+        <TabsList className="grid w-full grid-cols-4 glass-effect backdrop-blur-sm shadow-lg border-0">
           <TabsTrigger value="process" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-500 data-[state=active]:text-white">Treatment Process</TabsTrigger>
           <TabsTrigger value="pain" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-500 data-[state=active]:to-orange-500 data-[state=active]:text-white">Pain & Risks</TabsTrigger>
           <TabsTrigger value="methods" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-500 data-[state=active]:to-teal-500 data-[state=active]:text-white">Treatment Methods</TabsTrigger>
@@ -65,7 +62,7 @@ export function InfoSection() {
         </TabsList>
 
         <TabsContent value="process" className="space-y-4">
-          <Card className="shadow-lg bg-white/90 backdrop-blur-sm border-0">
+          <Card className="shadow-lg glass-effect backdrop-blur-sm border-0">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Clock className="h-5 w-5" />
@@ -98,7 +95,7 @@ export function InfoSection() {
         </TabsContent>
 
         <TabsContent value="pain" className="space-y-4">
-          <Card className="shadow-lg bg-white/90 backdrop-blur-sm border-0">
+          <Card className="shadow-lg glass-effect backdrop-blur-sm border-0">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <AlertTriangle className="h-5 w-5" />
@@ -131,7 +128,7 @@ export function InfoSection() {
         </TabsContent>
 
         <TabsContent value="methods" className="space-y-4">
-          <Card className="shadow-lg bg-white/90 backdrop-blur-sm border-0">
+          <Card className="shadow-lg glass-effect backdrop-blur-sm border-0">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Heart className="h-5 w-5" />
@@ -164,7 +161,7 @@ export function InfoSection() {
         </TabsContent>
 
         <TabsContent value="care" className="space-y-4">
-          <Card className="shadow-lg bg-white/90 backdrop-blur-sm border-0">
+          <Card className="shadow-lg glass-effect backdrop-blur-sm border-0">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Shield className="h-5 w-5" />
@@ -198,7 +195,7 @@ export function InfoSection() {
       </Tabs>
 
       {/* 常见问题 */}
-      <Card className="shadow-lg bg-white/90 backdrop-blur-sm border-0">
+      <Card className="shadow-lg glass-effect backdrop-blur-sm border-0">
         <CardHeader>
           <CardTitle>Frequently Asked Questions</CardTitle>
           <CardDescription>
@@ -238,7 +235,6 @@ export function InfoSection() {
           </div>
         </CardContent>
       </Card>
-      </div>
     </div>
   )
 } 

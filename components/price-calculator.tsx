@@ -130,7 +130,7 @@ export function PriceCalculator() {
 
       <div className="grid lg:grid-cols-2 gap-8">
         {/* 输入表单 */}
-        <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
+        <Card className="shadow-xl border-0 glass-effect backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Calculator className="h-5 w-5" />
@@ -259,7 +259,7 @@ export function PriceCalculator() {
         </Card>
 
         {/* 价格结果 */}
-        <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
+        <Card className="shadow-xl border-0 glass-effect backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <DollarSign className="h-5 w-5" />
