@@ -6,131 +6,198 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Slider } from "@/components/ui/slider"
-import { Calculator, DollarSign, Clock, Palette, Target } from "lucide-react"
+import { Calculator, DollarSign, Clock, Palette, Target, MapPin } from "lucide-react"
 
 interface TattooData {
-  size: number
+  length: number // 长度（英寸）
+  width: number // 宽度（英寸）
   colors: string
+  saturation: string
+  layering: string
   location: string
   age: number
+  scarring: string
   skinType: string
+  region: string
 }
 
 interface PriceBreakdown {
-  basePrice: number
-  sizeMultiplier: number
-  colorMultiplier: number
-  locationMultiplier: number
-  ageMultiplier: number
-  skinMultiplier: number
-  totalPrice: number
-  sessions: number
-  pricePerSession: number
+  baseCostPerSession: number
+  difficultyFactor: number
+  regionalFactor: number
+  totalSessions: number
+  totalCost: number
+  costPerSession: number
+  sizeFactor: number
+  colorFactor: number
+  saturationFactor: number
+  layeringFactor: number
+  ageFactor: number
+  locationFactor: number
+  scarringFactor: number
+  skinFactor: number
 }
 
 export function PriceCalculator() {
   const [tattooData, setTattooData] = useState<TattooData>({
-    size: 5,
+    length: 2,
+    width: 2,
     colors: "black",
+    saturation: "line",
+    layering: "no",
     location: "arm",
     age: 2,
-    skinType: "type3"
+    scarring: "no",
+    skinType: "type3",
+    region: "us_average"
   })
 
   const [priceBreakdown, setPriceBreakdown] = useState<PriceBreakdown | null>(null)
 
   const calculatePrice = () => {
-    // 基础价格（每平方厘米）
-    const basePricePerCm2 = 50
+    // 基础单次治疗费用（美元）
+    const baseCostPerSession = 150
 
-    // 尺寸倍数
-    const sizeMultiplier = tattooData.size <= 5 ? 1.2 : 
-                           tattooData.size <= 10 ? 1.0 : 
-                           tattooData.size <= 20 ? 0.9 : 0.8
-
-    // 颜色倍数
-    const colorMultipliers = {
-      black: 1.0,
-      colored: 1.5,
-      white: 1.8,
-      mixed: 1.3
+    // 尺寸难度系数
+    const getSizeFactor = (length: number, width: number) => {
+      const area = length * width
+      if (area <= 2) return 1.0
+      if (area <= 4) return 1.3
+      if (area <= 6) return 1.7
+      if (area <= 10) return 2.5
+      return 3.5
     }
 
-    // 位置倍数
-    const locationMultipliers = {
+    // 颜色难度系数
+    const colorFactors = {
+      black: 1.0,
+      dark_blue: 1.2,
+      red: 1.2,
+      green: 1.4,
+      yellow: 1.6,
+      white: 1.9,
+      mixed: 1.5
+    }
+
+    // 饱和度难度系数
+    const saturationFactors = {
+      line: 1.0,
+      filled: 1.3
+    }
+
+    // 层叠难度系数
+    const layeringFactors = {
+      no: 1.0,
+      yes: 1.4
+    }
+
+    // 年龄难度系数
+    const getAgeFactor = (age: number) => {
+      if (age < 1) return 1.3
+      if (age < 5) return 1.1
+      if (age >= 10) return 0.9
+      return 1.0
+    }
+
+    // 位置难度系数
+    const locationFactors = {
       arm: 1.0,
       leg: 1.0,
-      back: 1.1,
-      chest: 1.2,
-      face: 1.5,
-      hand: 1.4,
-      foot: 1.3
+      back: 1.0,
+      chest: 1.1,
+      hand: 1.3,
+      foot: 1.3,
+      neck: 1.4,
+      face: 1.5
     }
 
-    // 年龄倍数
-    const ageMultiplier = tattooData.age <= 1 ? 1.3 :
-                          tattooData.age <= 3 ? 1.1 :
-                          tattooData.age <= 5 ? 1.0 : 0.9
-
-    // 皮肤类型倍数
-    const skinMultipliers = {
-      type1: 1.2, // 非常白皙
-      type2: 1.1, // 白皙
-      type3: 1.0, // 中等
-      type4: 0.9, // 橄榄色
-      type5: 0.8, // 深色
-      type6: 0.7  // 非常深色
+    // 疤痕难度系数
+    const scarringFactors = {
+      no: 1.0,
+      yes: 1.3
     }
 
-    const basePrice = basePricePerCm2 * tattooData.size
-    const sizeMultiplierValue = sizeMultiplier
-    const colorMultiplierValue = colorMultipliers[tattooData.colors as keyof typeof colorMultipliers]
-    const locationMultiplierValue = locationMultipliers[tattooData.location as keyof typeof locationMultipliers]
-    const ageMultiplierValue = ageMultiplier
-    const skinMultiplierValue = skinMultipliers[tattooData.skinType as keyof typeof skinMultipliers]
+    // 肤色难度系数
+    const skinFactors = {
+      type1: 1.0,
+      type2: 1.0,
+      type3: 1.1,
+      type4: 1.2,
+      type5: 1.4,
+      type6: 1.5
+    }
 
-    const totalPrice = basePrice * sizeMultiplierValue * colorMultiplierValue * 
-                      locationMultiplierValue * ageMultiplierValue * skinMultiplierValue
+    // 地区系数
+    const regionalFactors = {
+      us_average: 1.0,
+      nyc_la: 1.3,
+      london: 1.2,
+      us_other: 0.9,
+      china_tier1: 0.8,
+      china_tier2: 0.6
+    }
 
-    // 估算治疗次数
-    const sessions = tattooData.colors === "black" ? 
-                    Math.ceil(tattooData.size / 3) : 
-                    Math.ceil(tattooData.size / 2) + 2
+    // 计算各项难度系数
+    const sizeFactor = getSizeFactor(tattooData.length, tattooData.width)
+    const colorFactor = colorFactors[tattooData.colors as keyof typeof colorFactors]
+    const saturationFactor = saturationFactors[tattooData.saturation as keyof typeof saturationFactors]
+    const layeringFactor = layeringFactors[tattooData.layering as keyof typeof layeringFactors]
+    const ageFactor = getAgeFactor(tattooData.age)
+    const locationFactor = locationFactors[tattooData.location as keyof typeof locationFactors]
+    const scarringFactor = scarringFactors[tattooData.scarring as keyof typeof scarringFactors]
+    const skinFactor = skinFactors[tattooData.skinType as keyof typeof skinFactors]
+    const regionalFactor = regionalFactors[tattooData.region as keyof typeof regionalFactors]
 
-    const pricePerSession = Math.round(totalPrice / sessions)
+    // 计算总难度系数
+    const difficultyFactor = sizeFactor * colorFactor * saturationFactor * 
+                           layeringFactor * ageFactor * locationFactor * 
+                           scarringFactor * skinFactor
+
+    // 估算治疗次数（基于难度系数）
+    const baseSessions = 8
+    const totalSessions = Math.round(baseSessions * Math.sqrt(difficultyFactor))
+
+    // 计算总费用
+    const totalCost = Math.round(baseCostPerSession * difficultyFactor * regionalFactor * totalSessions)
+    const costPerSession = Math.round(totalCost / totalSessions)
 
     setPriceBreakdown({
-      basePrice: Math.round(basePrice),
-      sizeMultiplier: sizeMultiplierValue,
-      colorMultiplier: colorMultiplierValue,
-      locationMultiplier: locationMultiplierValue,
-      ageMultiplier: ageMultiplierValue,
-      skinMultiplier: skinMultiplierValue,
-      totalPrice: Math.round(totalPrice),
-      sessions,
-      pricePerSession
+      baseCostPerSession,
+      difficultyFactor,
+      regionalFactor,
+      totalSessions,
+      totalCost,
+      costPerSession,
+      sizeFactor,
+      colorFactor,
+      saturationFactor,
+      layeringFactor,
+      ageFactor,
+      locationFactor,
+      scarringFactor,
+      skinFactor
     })
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-8">
+    <div className="max-w-6xl mx-auto p-6 space-y-8">
       {/* 标题区域 */}
       <div className="text-center space-y-4">
-        <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-4">
+                 <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-full text-sm font-semibold mb-6 shadow-lg">
           <Calculator className="h-4 w-4" />
-          Smart Price Calculator
+          Professional Price Calculator
         </div>
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-          Start Your Price Estimation
+          Tattoo Removal Price Estimation
         </h2>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Fill in the information below to get accurate price estimates and professional advice
+          Get accurate price estimates based on scientific algorithms and professional data
         </p>
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-8">
-        {/* 输入表单 */}
-        <Card className="shadow-xl border-0 glass-effect backdrop-blur-sm">
+             <div className="space-y-8">
+                  {/* Input Form */}
+          <Card className="shadow-xl border-0 bg-gradient-to-br from-white to-gray-50 relative overflow-visible">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Calculator className="h-5 w-5" />
@@ -140,217 +207,281 @@ export function PriceCalculator() {
               Please fill in your tattoo details for accurate price estimation
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
-            {/* 尺寸 */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Tattoo Size (cm²)</label>
-              <div className="flex items-center gap-4">
-                <Slider
-                  value={[tattooData.size]}
-                  onValueChange={(value) => setTattooData({...tattooData, size: value[0]})}
-                  max={50}
-                  min={1}
-                  step={1}
-                  className="flex-1"
-                />
-                <Input
-                  type="number"
-                  value={tattooData.size}
-                  onChange={(e) => setTattooData({...tattooData, size: parseInt(e.target.value) || 1})}
-                  className="w-20"
-                  min="1"
-                  max="50"
-                />
-              </div>
-              <p className="text-xs text-gray-500">
-                Current size: {tattooData.size} cm²
-              </p>
-            </div>
+                     <CardContent className="space-y-6 overflow-visible">
+                         {/* Size */}
+             <div className="space-y-2">
+               <label className="text-sm font-medium">Tattoo Dimensions (inches)</label>
+               <div className="grid grid-cols-2 gap-4">
+                 <div className="space-y-2">
+                   <label className="text-xs text-gray-600">Length</label>
+                   <Input
+                     type="number"
+                     value={tattooData.length}
+                     onChange={(e) => setTattooData({...tattooData, length: parseFloat(e.target.value) || 1})}
+                     className="w-full"
+                     min="0.5"
+                     max="10"
+                     step="0.1"
+                     placeholder="Length"
+                   />
+                 </div>
+                 <div className="space-y-2">
+                   <label className="text-xs text-gray-600">Width</label>
+                   <Input
+                     type="number"
+                     value={tattooData.width}
+                     onChange={(e) => setTattooData({...tattooData, width: parseFloat(e.target.value) || 1})}
+                     className="w-full"
+                     min="0.5"
+                     max="10"
+                     step="0.1"
+                     placeholder="Width"
+                   />
+                 </div>
+               </div>
+               <p className="text-xs text-gray-500">
+                 Area: {(tattooData.length * tattooData.width).toFixed(1)} sq inches
+               </p>
+             </div>
 
-            {/* 颜色 */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium flex items-center gap-2">
-                <Palette className="h-4 w-4" />
-                Tattoo Color
-              </label>
-              <Select value={tattooData.colors} onValueChange={(value) => setTattooData({...tattooData, colors: value})}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="black">Black</SelectItem>
-                  <SelectItem value="colored">Colored</SelectItem>
-                  <SelectItem value="white">White</SelectItem>
-                  <SelectItem value="mixed">Mixed</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+                         {/* Color */}
+             <div className="space-y-2 relative pb-4">
+               <label className="text-sm font-medium flex items-center gap-2">
+                 <Palette className="h-4 w-4" />
+                 Ink Color
+               </label>
+               <Select value={tattooData.colors} onValueChange={(value) => setTattooData({...tattooData, colors: value})}>
+                 <SelectTrigger>
+                   <SelectValue />
+                 </SelectTrigger>
+                                   <SelectContent>
+                    <SelectItem value="black" className="text-black font-medium">Black</SelectItem>
+                    <SelectItem value="dark_blue" className="text-blue-800 font-medium">Dark Blue</SelectItem>
+                    <SelectItem value="red" className="text-red-600 font-medium">Red</SelectItem>
+                    <SelectItem value="green" className="text-green-600 font-medium">Green</SelectItem>
+                    <SelectItem value="yellow" className="text-yellow-600 font-medium">Yellow</SelectItem>
+                    <SelectItem value="white" className="text-gray-600 font-medium">White</SelectItem>
+                    <SelectItem value="mixed" className="text-purple-600 font-medium">Mixed Colors</SelectItem>
+                  </SelectContent>
+               </Select>
+             </div>
 
-            {/* 位置 */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium flex items-center gap-2">
-                <Target className="h-4 w-4" />
-                Tattoo Location
-              </label>
-              <Select value={tattooData.location} onValueChange={(value) => setTattooData({...tattooData, location: value})}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="arm">Arm</SelectItem>
-                  <SelectItem value="leg">Leg</SelectItem>
-                  <SelectItem value="back">Back</SelectItem>
-                  <SelectItem value="chest">Chest</SelectItem>
-                  <SelectItem value="face">Face</SelectItem>
-                  <SelectItem value="hand">Hand</SelectItem>
-                  <SelectItem value="foot">Foot</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+                         {/* Saturation */}
+             <div className="space-y-2 relative pb-4">
+               <label className="text-sm font-medium">Ink Saturation</label>
+               <Select value={tattooData.saturation} onValueChange={(value) => setTattooData({...tattooData, saturation: value})}>
+                 <SelectTrigger>
+                   <SelectValue />
+                 </SelectTrigger>
+                 <SelectContent>
+                   <SelectItem value="line">Line Work</SelectItem>
+                   <SelectItem value="filled">Completely Filled</SelectItem>
+                 </SelectContent>
+               </Select>
+             </div>
 
-            {/* 年龄 */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium flex items-center gap-2">
-                <Clock className="h-4 w-4" />
-                Tattoo Age (years)
-              </label>
-              <div className="flex items-center gap-4">
-                <Slider
-                  value={[tattooData.age]}
-                  onValueChange={(value) => setTattooData({...tattooData, age: value[0]})}
-                  max={10}
-                  min={0}
-                  step={1}
-                  className="flex-1"
-                />
-                <Input
-                  type="number"
-                  value={tattooData.age}
-                  onChange={(e) => setTattooData({...tattooData, age: parseInt(e.target.value) || 0})}
-                  className="w-20"
-                  min="0"
-                  max="10"
-                />
-              </div>
-            </div>
+                         {/* Layering */}
+             <div className="space-y-2 relative pb-4">
+               <label className="text-sm font-medium">Ink Layering</label>
+               <Select value={tattooData.layering} onValueChange={(value) => setTattooData({...tattooData, layering: value})}>
+                 <SelectTrigger>
+                   <SelectValue />
+                 </SelectTrigger>
+                 <SelectContent>
+                   <SelectItem value="no">No Layering</SelectItem>
+                   <SelectItem value="yes">With Layering</SelectItem>
+                 </SelectContent>
+               </Select>
+             </div>
 
-            {/* 皮肤类型 */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Skin Type</label>
-              <Select value={tattooData.skinType} onValueChange={(value) => setTattooData({...tattooData, skinType: value})}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="type1">Type 1 - Very Fair</SelectItem>
-                  <SelectItem value="type2">Type 2 - Fair</SelectItem>
-                  <SelectItem value="type3">Type 3 - Medium</SelectItem>
-                  <SelectItem value="type4">Type 4 - Olive</SelectItem>
-                  <SelectItem value="type5">Type 5 - Dark</SelectItem>
-                  <SelectItem value="type6">Type 6 - Very Dark</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+                         {/* Location */}
+             <div className="space-y-2 relative pb-4">
+               <label className="text-sm font-medium flex items-center gap-2">
+                 <Target className="h-4 w-4" />
+                 Tattoo Location
+               </label>
+               <Select value={tattooData.location} onValueChange={(value) => setTattooData({...tattooData, location: value})}>
+                 <SelectTrigger>
+                   <SelectValue />
+                 </SelectTrigger>
+                 <SelectContent>
+                   <SelectItem value="arm">Arm</SelectItem>
+                   <SelectItem value="leg">Leg</SelectItem>
+                   <SelectItem value="back">Back</SelectItem>
+                   <SelectItem value="chest">Chest</SelectItem>
+                   <SelectItem value="hand">Hand</SelectItem>
+                   <SelectItem value="foot">Foot</SelectItem>
+                   <SelectItem value="neck">Neck</SelectItem>
+                   <SelectItem value="face">Face</SelectItem>
+                 </SelectContent>
+               </Select>
+             </div>
 
-            <Button onClick={calculatePrice} className="w-full">
+                                      {/* Age */}
+             <div className="space-y-2 relative pb-4">
+               <label className="text-sm font-medium flex items-center gap-2">
+                 <Clock className="h-4 w-4" />
+                 Tattoo Age (years)
+               </label>
+               <Input
+                 type="number"
+                 value={tattooData.age}
+                 onChange={(e) => setTattooData({...tattooData, age: parseInt(e.target.value) || 0})}
+                 className="w-full"
+                 min="0"
+                 max="20"
+                 step="1"
+                 placeholder="Enter age in years"
+               />
+             </div>
+
+                         {/* Scarring */}
+             <div className="space-y-2 relative pb-4">
+               <label className="text-sm font-medium">Scarring</label>
+               <Select value={tattooData.scarring} onValueChange={(value) => setTattooData({...tattooData, scarring: value})}>
+                 <SelectTrigger>
+                   <SelectValue />
+                 </SelectTrigger>
+                 <SelectContent>
+                   <SelectItem value="no">No Scarring</SelectItem>
+                   <SelectItem value="yes">With Scarring</SelectItem>
+                 </SelectContent>
+               </Select>
+             </div>
+
+                         {/* Skin Type */}
+             <div className="space-y-2 relative pb-4">
+               <label className="text-sm font-medium">Skin Type</label>
+               <Select value={tattooData.skinType} onValueChange={(value) => setTattooData({...tattooData, skinType: value})}>
+                 <SelectTrigger>
+                   <SelectValue />
+                 </SelectTrigger>
+                 <SelectContent>
+                   <SelectItem value="type1">Type I - Very Fair</SelectItem>
+                   <SelectItem value="type2">Type II - Fair</SelectItem>
+                   <SelectItem value="type3">Type III - Medium</SelectItem>
+                   <SelectItem value="type4">Type IV - Olive</SelectItem>
+                   <SelectItem value="type5">Type V - Dark</SelectItem>
+                   <SelectItem value="type6">Type VI - Very Dark</SelectItem>
+                 </SelectContent>
+               </Select>
+             </div>
+
+                         {/* Region */}
+             <div className="space-y-2 relative pb-4">
+               <label className="text-sm font-medium flex items-center gap-2">
+                 <MapPin className="h-4 w-4" />
+                 Region
+               </label>
+               <Select value={tattooData.region} onValueChange={(value) => setTattooData({...tattooData, region: value})}>
+                 <SelectTrigger>
+                   <SelectValue />
+                 </SelectTrigger>
+                 <SelectContent>
+                   <SelectItem value="us_average">US Average</SelectItem>
+                   <SelectItem value="nyc_la">NYC/Los Angeles</SelectItem>
+                   <SelectItem value="london">London</SelectItem>
+                   <SelectItem value="us_other">Other US Cities</SelectItem>
+                   {/* <SelectItem value="china_tier1">China Tier 1 Cities</SelectItem> */}
+                   {/* <SelectItem value="china_tier2">China Tier 2-3 Cities</SelectItem> */}
+                 </SelectContent>
+               </Select>
+             </div>
+
+                                                   <Button onClick={calculatePrice} className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-4 text-lg shadow-lg">
               Calculate Price
             </Button>
           </CardContent>
-        </Card>
+                 </Card>
 
-        {/* 价格结果 */}
-        <Card className="shadow-xl border-0 glass-effect backdrop-blur-sm">
+                  {/* Price Results */}
+          <Card className="shadow-xl border-0 bg-gradient-to-br from-white to-gray-50 relative overflow-visible">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <DollarSign className="h-5 w-5" />
-              Price Estimation
+              Price Estimation Results
             </CardTitle>
             <CardDescription>
-              Price breakdown based on your provided information
+              Price breakdown based on your information and scientific algorithms
             </CardDescription>
           </CardHeader>
           <CardContent>
             {priceBreakdown ? (
               <div className="space-y-6">
-                {/* 总价格 */}
-                <div className="text-center p-8 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-2xl text-white shadow-lg">
+                                 {/* 总价格 */}
+                                  <div className="text-center p-10 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 rounded-xl text-white shadow-2xl">
                   <div className="text-4xl font-bold mb-2">
-                    ¥{priceBreakdown.totalPrice.toLocaleString()}
+                    ${priceBreakdown.totalCost.toLocaleString()}
                   </div>
                   <div className="text-blue-100 text-lg">
                     Total Cost Estimate
                   </div>
                   <div className="mt-4 text-blue-100 text-sm">
-                    Calculated using professional algorithm
+                    Calculated using professional algorithms
                   </div>
                 </div>
 
-                {/* 价格明细 */}
-                <div className="space-y-3">
-                  <h4 className="font-medium text-gray-900">Price Breakdown</h4>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between">
-                      <span>Base Price ({tattooData.size}cm²)</span>
-                      <span>¥{priceBreakdown.basePrice}</span>
-                    </div>
-                    <div className="flex justify-between text-gray-600">
-                      <span>Size Multiplier</span>
-                      <span>×{priceBreakdown.sizeMultiplier.toFixed(1)}</span>
-                    </div>
-                    <div className="flex justify-between text-gray-600">
-                      <span>Color Multiplier</span>
-                      <span>×{priceBreakdown.colorMultiplier.toFixed(1)}</span>
-                    </div>
-                    <div className="flex justify-between text-gray-600">
-                      <span>Location Multiplier</span>
-                      <span>×{priceBreakdown.locationMultiplier.toFixed(1)}</span>
-                    </div>
-                    <div className="flex justify-between text-gray-600">
-                      <span>Age Multiplier</span>
-                      <span>×{priceBreakdown.ageMultiplier.toFixed(1)}</span>
-                    </div>
-                    <div className="flex justify-between text-gray-600">
-                      <span>Skin Type Multiplier</span>
-                      <span>×{priceBreakdown.skinMultiplier.toFixed(1)}</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* 治疗信息 */}
-                <div className="space-y-3">
-                  <h4 className="font-medium text-gray-900">Treatment Information</h4>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="text-center p-3 bg-gray-50 rounded-lg">
-                      <div className="text-lg font-semibold text-gray-900">
-                        {priceBreakdown.sessions}
+                                 {/* 治疗信息 */}
+                 <div className="grid grid-cols-2 gap-6">
+                                      <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-100">
+                      <div className="text-3xl font-bold text-blue-900 mb-1">
+                        {priceBreakdown.totalSessions}
                       </div>
-                      <div className="text-xs text-gray-600">Expected Sessions</div>
+                      <div className="text-sm text-blue-700 font-medium">Expected Sessions</div>
                     </div>
-                    <div className="text-center p-3 bg-gray-50 rounded-lg">
-                      <div className="text-lg font-semibold text-gray-900">
-                        ¥{priceBreakdown.pricePerSession}
-                      </div>
-                      <div className="text-xs text-gray-600">Per Session Cost</div>
-                    </div>
-                  </div>
-                </div>
+                    <div className="text-center p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border border-green-100">
+                     <div className="text-3xl font-bold text-green-900 mb-1">
+                       ${priceBreakdown.costPerSession}
+                     </div>
+                     <div className="text-sm text-green-700 font-medium">Cost Per Session</div>
+                   </div>
+                 </div>
 
-                {/* 注意事项 */}
-                <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-                  <h5 className="font-medium text-yellow-800 mb-2">Important Notice</h5>
-                  <ul className="text-sm text-yellow-700 space-y-1">
-                    <li>• This price is only an estimate, actual prices may vary by clinic</li>
-                    <li>• We recommend consulting a professional doctor for accurate quotes</li>
-                    <li>• Number of treatments may vary based on individual circumstances</li>
-                  </ul>
-                </div>
+                
+
+                                 {/* Regional Factor */}
+                 <div className="p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl border border-purple-100">
+                   <h4 className="font-semibold text-purple-900 mb-3">Regional Adjustment</h4>
+                   <div className="flex justify-between items-center text-sm">
+                     <span className="text-purple-700">Regional Factor</span>
+                     <span className="font-bold text-purple-900 text-lg">×{priceBreakdown.regionalFactor.toFixed(2)}</span>
+                   </div>
+                 </div>
+
+                                 {/* Important Notice */}
+                 <div className="p-6 bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 rounded-xl">
+                   <h5 className="font-semibold text-amber-900 mb-3 flex items-center gap-2">
+                     <span className="w-2 h-2 bg-amber-500 rounded-full"></span>
+                     Important Notice
+                   </h5>
+                   <ul className="text-sm text-amber-800 space-y-2">
+                     <li className="flex items-start gap-2">
+                       <span className="text-amber-600 mt-1">•</span>
+                       <span>This price is only an estimate, actual prices may vary by clinic</span>
+                     </li>
+                     <li className="flex items-start gap-2">
+                       <span className="text-amber-600 mt-1">•</span>
+                       <span>We recommend consulting a professional doctor for accurate quotes</span>
+                     </li>
+                     <li className="flex items-start gap-2">
+                       <span className="text-amber-600 mt-1">•</span>
+                       <span>Number of treatments may vary based on individual circumstances</span>
+                     </li>
+                     <li className="flex items-start gap-2">
+                       <span className="text-amber-600 mt-1">•</span>
+                       <span>Prices are calculated in USD, please refer to current exchange rates for other currencies</span>
+                     </li>
+                   </ul>
+                 </div>
               </div>
-            ) : (
-              <div className="text-center py-12 text-gray-500">
-                <Calculator className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-                <p>Please fill in the information on the left and click &ldquo;Calculate Price&rdquo; button</p>
-              </div>
-            )}
+                         ) : (
+               <div className="text-center py-16 text-gray-500">
+                 <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center">
+                   <Calculator className="h-10 w-10 text-gray-400" />
+                 </div>
+                 <p className="text-lg">Please fill in the information above and click &ldquo;Calculate Price&rdquo; button</p>
+               </div>
+             )}
           </CardContent>
         </Card>
       </div>
