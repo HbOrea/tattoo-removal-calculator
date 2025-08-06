@@ -6,46 +6,46 @@ import { AlertTriangle, Clock, DollarSign, Heart, Shield, Users } from "lucide-r
 
 export function InfoSection() {
   return (
-    <div className="max-w-6xl mx-auto p-6 space-y-12 relative">
+    <div className="max-w-4xl mx-auto p-6 space-y-12">
       {/* 特色功能 */}
       <div className="grid md:grid-cols-3 gap-8">
-        <Card className="text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 glass-effect backdrop-blur-sm border-0">
+        <Card className="text-center shadow-sm border border-slate-200 bg-white">
           <CardHeader>
-            <div className="mx-auto w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center mb-4 shadow-lg">
-              <DollarSign className="h-8 w-8 text-white" />
+            <div className="mx-auto w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center mb-4">
+              <DollarSign className="h-6 w-6 text-white" />
             </div>
-            <CardTitle className="text-xl">Transparent Pricing</CardTitle>
+            <CardTitle className="text-lg text-slate-900">Transparent Pricing</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-slate-600 leading-relaxed">
               Detailed price breakdown including base costs, treatment sessions, regional differences, and more to help you understand every cost
             </p>
           </CardContent>
         </Card>
 
-        <Card className="text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 glass-effect backdrop-blur-sm border-0">
+        <Card className="text-center shadow-sm border border-slate-200 bg-white">
           <CardHeader>
-            <div className="mx-auto w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mb-4 shadow-lg">
-              <Shield className="h-8 w-8 text-white" />
+            <div className="mx-auto w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center mb-4">
+              <Shield className="h-6 w-6 text-white" />
             </div>
-            <CardTitle className="text-xl">Professional Guidance</CardTitle>
+            <CardTitle className="text-lg text-slate-900">Professional Guidance</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-slate-600 leading-relaxed">
               Professional pain management advice and risk information to help you make informed decisions
             </p>
           </CardContent>
         </Card>
 
-        <Card className="text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 glass-effect backdrop-blur-sm border-0">
+        <Card className="text-center shadow-sm border border-slate-200 bg-white">
           <CardHeader>
-            <div className="mx-auto w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center mb-4 shadow-lg">
-              <Users className="h-8 w-8 text-white" />
+            <div className="mx-auto w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center mb-4">
+              <Users className="h-6 w-6 text-white" />
             </div>
-            <CardTitle className="text-xl">Clinic Recommendations</CardTitle>
+            <CardTitle className="text-lg text-slate-900">Clinic Recommendations</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-slate-600 leading-relaxed">
               Professional clinic recommendations based on your location with user reviews and price comparisons
             </p>
           </CardContent>
@@ -54,17 +54,17 @@ export function InfoSection() {
 
       {/* 详细知识库 */}
       <Tabs defaultValue="process" className="w-full">
-        <TabsList className="grid w-full grid-cols-4 glass-effect backdrop-blur-sm shadow-lg border-0">
-          <TabsTrigger value="process" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-500 data-[state=active]:text-white">Treatment Process</TabsTrigger>
-          <TabsTrigger value="pain" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-500 data-[state=active]:to-orange-500 data-[state=active]:text-white">Pain & Risks</TabsTrigger>
-          <TabsTrigger value="methods" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-500 data-[state=active]:to-teal-500 data-[state=active]:text-white">Treatment Methods</TabsTrigger>
-          <TabsTrigger value="care" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500 data-[state=active]:to-pink-500 data-[state=active]:text-white">Care Guide</TabsTrigger>
+        <TabsList className="grid w-full grid-cols-4 bg-slate-100 border border-slate-200">
+          <TabsTrigger value="process" className="data-[state=active]:bg-slate-900 data-[state=active]:text-white">Treatment Process</TabsTrigger>
+          <TabsTrigger value="pain" className="data-[state=active]:bg-slate-900 data-[state=active]:text-white">Pain & Risks</TabsTrigger>
+          <TabsTrigger value="methods" className="data-[state=active]:bg-slate-900 data-[state=active]:text-white">Treatment Methods</TabsTrigger>
+          <TabsTrigger value="care" className="data-[state=active]:bg-slate-900 data-[state=active]:text-white">Care Guide</TabsTrigger>
         </TabsList>
 
         <TabsContent value="process" className="space-y-4">
-          <Card className="shadow-lg glass-effect backdrop-blur-sm border-0">
+          <Card className="shadow-sm border border-slate-200 bg-white">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-slate-900">
                 <Clock className="h-5 w-5" />
                 Complete Tattoo Removal Process
               </CardTitle>
@@ -72,8 +72,8 @@ export function InfoSection() {
             <CardContent className="space-y-4">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="font-medium mb-3">Pre-Treatment Preparation</h4>
-                  <ul className="space-y-2 text-sm text-gray-600">
+                  <h4 className="font-medium mb-3 text-slate-900">Pre-Treatment Preparation</h4>
+                  <ul className="space-y-2 text-sm text-slate-600">
                     <li>• Professional doctor consultation and assessment</li>
                     <li>• Skin type and tattoo characteristics analysis</li>
                     <li>• Personalized treatment plan development</li>
@@ -81,8 +81,8 @@ export function InfoSection() {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-medium mb-3">Treatment Process</h4>
-                  <ul className="space-y-2 text-sm text-gray-600">
+                  <h4 className="font-medium mb-3 text-slate-900">Treatment Process</h4>
+                  <ul className="space-y-2 text-sm text-slate-600">
                     <li>• Laser treatment: 15-30 minutes per session</li>
                     <li>• Treatment intervals: 6-8 weeks</li>
                     <li>• Total course: 3-10 sessions (depending on case)</li>
