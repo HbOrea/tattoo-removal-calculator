@@ -5,8 +5,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: '/private/',
+      disallow: ['/api/', '/admin/', '/private/'],
     },
-    sitemap: 'https:/tattoo-removal-calculator.com/sitemap.xml',
+    sitemap: 'https://tattoo-removal-calculator.com/sitemap.xml',
   }
 } 
