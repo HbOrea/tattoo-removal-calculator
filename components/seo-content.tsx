@@ -1,7 +1,7 @@
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { CheckCircle, DollarSign, Clock, Shield, Users, Star } from "lucide-react"
+import { CheckCircle, DollarSign, Shield, Users, Star } from "lucide-react"
 
 export function SeoContent() {
   return (
@@ -52,7 +52,7 @@ export function SeoContent() {
           </div>
 
           <p>
-            When researching <strong>how much does tattoo removal cost</strong>, it's important to understand that 
+            When researching <strong>how much does tattoo removal cost</strong>, it&apos;s important to understand that 
             <strong>tattoo removal pricing</strong> is not a one-time expense. Most individuals need multiple sessions 
             spaced 6-8 weeks apart. The total <strong>tattoo removal cost</strong> can range from $1,000 to $10,000 
             for complete removal, depending on the complexity of your specific case.
@@ -61,7 +61,7 @@ export function SeoContent() {
           <p>
             Professional clinics offering laser <strong>tattoo removal pricing</strong> typically charge per session 
             or per square inch. Some clinics provide package deals that can reduce the overall <strong>tattoo removal cost</strong>. 
-            It's essential to choose a qualified provider, as improper treatment can increase the total cost and 
+            It&apos;s essential to choose a qualified provider, as improper treatment can increase the total cost and 
             potentially cause scarring or other complications.
           </p>
         </div>
@@ -175,7 +175,7 @@ export function SeoContent() {
         </h3>
         <p className="text-gray-700 leading-relaxed">
           Understanding <strong>how much does tattoo removal cost</strong> requires careful consideration of multiple factors. 
-          While <strong>tattoo removal pricing</strong> can be significant, it's an investment in your confidence and well-being. 
+          While <strong>tattoo removal pricing</strong> can be significant, it&apos;s an investment in your confidence and well-being. 
           The <strong>tattoo removal cost</strong> should be weighed against the benefits of professional treatment and 
           the peace of mind that comes with choosing experienced practitioners. Use our calculator to get a personalized 
           estimate of your <strong>tattoo removal pricing</strong> and make an informed decision about your treatment journey.

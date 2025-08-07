@@ -5,8 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Slider } from "@/components/ui/slider"
-import { Calculator, DollarSign, Clock, Palette, Target, MapPin, Sparkles, TrendingUp, Shield, AlertCircle } from "lucide-react"
+import { Calculator, DollarSign, Clock, Palette, Target, MapPin, TrendingUp, Shield, AlertCircle } from "lucide-react"
 
 interface TattooData {
   length: number // 长度（英寸）
@@ -494,7 +493,7 @@ export function PriceCalculator() {
                   <Calculator className="h-10 w-10 text-slate-400" />
                 </div>
                 <p className="text-lg font-medium text-slate-600 mb-2">Ready to Calculate</p>
-                <p className="text-slate-500">Please fill in the information above and click "Calculate Price" button</p>
+                <p className="text-slate-500">Please fill in the information above and click &quot;Calculate Price&quot; button</p>
               </div>
             )}
           </CardContent>
