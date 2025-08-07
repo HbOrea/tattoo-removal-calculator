@@ -139,7 +139,7 @@ MIT License
 
 ## 📞 联系我们
 
-- 邮箱：info@tattooremoval.com
+- 邮箱：info@tattoo-removal-calculator.com
 
 ---
 

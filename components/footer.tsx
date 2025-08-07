@@ -71,7 +71,7 @@ export function Footer() {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-slate-400" />
-                <span className="text-slate-400">info@tattooremoval.com</span>
+                <span className="text-slate-400">info@tattoo-removal-calculator.com</span>
               </div>
             </div>
           </div>
