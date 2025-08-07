@@ -140,8 +140,6 @@ MIT License
 ## 📞 联系我们
 
 - 邮箱：info@tattooremoval.com
-- 电话：400-123-4567
-- 地址：北京市朝阳区
 
 ---
 
