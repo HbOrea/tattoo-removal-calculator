@@ -9,7 +9,7 @@ export function SeoContent() {
       {/* 主要内容区域 - SEO优化 */}
       <div className="prose prose-lg max-w-none">
         <h2 className="text-3xl font-bold text-gray-800 mb-6">
-          How Much Does Tattoo Removal Cost? Complete Pricing Guide 2024
+          How Much Does Tattoo Removal Cost? Complete Pricing Guide 2025
         </h2>
         
         <div className="text-gray-700 leading-relaxed space-y-6">

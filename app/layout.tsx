@@ -14,18 +14,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "How Much Does Tattoo Removal Cost? | Free Price Calculator 2024",
+  title: "How Much Does Tattoo Removal Cost? | Free Price Calculator 2025",
   description: "Calculate tattoo removal cost instantly. Learn how much does tattoo removal cost based on size, location, and treatment method. Get accurate pricing estimates and professional guidance.",
   keywords: "tattoo removal cost, how much does tattoo removal cost, laser tattoo removal price, tattoo removal pricing, tattoo removal calculator",
   openGraph: {
-    title: "How Much Does Tattoo Removal Cost? | Free Price Calculator 2024",
+    title: "How Much Does Tattoo Removal Cost? | Free Price Calculator 2025",
     description: "Calculate tattoo removal cost instantly. Learn how much does tattoo removal cost based on size, location, and treatment method. Get accurate pricing estimates and professional guidance.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "How Much Does Tattoo Removal Cost? | Free Price Calculator 2024",
+    title: "How Much Does Tattoo Removal Cost? | Free Price Calculator 2025",
     description: "Calculate tattoo removal cost instantly. Learn how much does tattoo removal cost based on size, location, and treatment method.",
   },
   robots: {
