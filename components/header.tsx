@@ -37,8 +37,8 @@ export function Header() {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <Button className="bg-slate-900 hover:bg-slate-800 text-white">
-              Start Calculation
+            <Button asChild className="bg-slate-900 hover:bg-slate-800 text-white">
+              <a href="#calculator">Start Calculation</a>
             </Button>
           </div>
 
@@ -87,8 +87,8 @@ export function Header() {
               >
                 About Us
               </a>
-              <Button className="w-full bg-slate-900 hover:bg-slate-800 text-white">
-                Start Calculation
+              <Button asChild className="w-full bg-slate-900 hover:bg-slate-800 text-white">
+                <a href="#calculator" onClick={() => setIsMenuOpen(false)}>Start Calculation</a>
               </Button>
             </nav>
           </div>

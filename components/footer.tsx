@@ -17,13 +17,13 @@ export function Footer() {
               Professional tattoo removal price calculator to help you understand treatment costs, get professional advice, and find suitable clinics.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-slate-400 hover:text-white transition-colors">
+              <a href="/privacy" className="text-slate-400 hover:text-white transition-colors">
                 Privacy Policy
               </a>
-              <a href="#" className="text-slate-400 hover:text-white transition-colors">
+              <a href="/terms" className="text-slate-400 hover:text-white transition-colors">
                 Terms of Service
               </a>
-              <a href="#" className="text-slate-400 hover:text-white transition-colors">
+              <a href="mailto:info@tattoo-removal-calculator.com" className="text-slate-400 hover:text-white transition-colors">
                 Contact Us
               </a>
             </div>
