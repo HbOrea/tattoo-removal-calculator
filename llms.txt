@@ -1,0 +1,14 @@
+# Tattoo Removal Cost Calculator
+
+> 一个免费的在线纹身移除价格计算器，基于尺寸、位置、颜色、纹身年龄和皮肤类型，立即给出费用区间与疗程建议。
+
+我们专注提供价格透明度与专业指导，帮助你迅速做出是否开始治疗的决策。
+
+## 核心内容
+- [产品](https://www.tattoo-removal-calculator.com/#calculator)：在线价格计算器，实时估算单次/总费用与疗程次数
+- [服务](https://www.tattoo-removal-calculator.com/#process)：纹身移除流程、预期效果与术后护理指导
+- [博客](https://www.tattoo-removal-calculator.com/#pricing-guide)：价格因素解析与知识性内容（持续更新）
+
+## 常用资源
+- [常见问题](https://www.tattoo-removal-calculator.com/#faq)：对成本、疗程、疼痛、疤痕等问题的解答
+- [联系方式](mailto:info@tattoo-removal-calculator.com)：邮件联系
