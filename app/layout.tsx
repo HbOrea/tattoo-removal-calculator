@@ -17,11 +17,18 @@ export const metadata: Metadata = {
   title: "How Much Does Tattoo Removal Cost? | Free Price Calculator 2025",
   description: "Calculate tattoo removal cost instantly. Learn how much does tattoo removal cost based on size, location, and treatment method. Get accurate pricing estimates and professional guidance.",
   keywords: "tattoo removal cost, how much does tattoo removal cost, laser tattoo removal price, tattoo removal pricing, tattoo removal calculator",
+  icons: {
+    icon: '/favicon-minimal.svg',
+    shortcut: '/favicon-minimal.svg',
+    apple: '/favicon-minimal.svg',
+  },
   openGraph: {
     title: "How Much Does Tattoo Removal Cost? | Free Price Calculator 2025",
     description: "Calculate tattoo removal cost instantly. Learn how much does tattoo removal cost based on size, location, and treatment method. Get accurate pricing estimates and professional guidance.",
     type: "website",
     locale: "en_US",
+    url: "https://www.tattoo-removal-calculator.com/",
+    siteName: "Tattoo Removal Cost Calculator",
   },
   twitter: {
     card: "summary_large_image",
@@ -40,7 +47,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://yourdomain.com",
+    canonical: "https://www.tattoo-removal-calculator.com/",
   },
 };
 
@@ -63,7 +70,7 @@ export default function RootLayout({
               "@type": "WebApplication",
               "name": "Tattoo Removal Cost Calculator",
               "description": "Free online calculator to estimate how much does tattoo removal cost based on size, location, and treatment method",
-              "url": "https://yourdomain.com",
+              "url": "https://www.tattoo-removal-calculator.com/",
               "applicationCategory": "HealthApplication",
               "operatingSystem": "Web Browser",
               "offers": {
@@ -75,7 +82,7 @@ export default function RootLayout({
               "provider": {
                 "@type": "Organization",
                 "name": "Tattoo Removal Calculator",
-                "url": "https://yourdomain.com"
+                "url": "https://www.tattoo-removal-calculator.com/"
               }
             })
           }}
