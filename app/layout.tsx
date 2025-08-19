@@ -29,6 +29,14 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://www.tattoo-removal-calculator.com/",
     siteName: "Tattoo Removal Cost Calculator",
+    images: [
+      {
+        url: "/og.svg",
+        width: 1200,
+        height: 630,
+        alt: "Tattoo Removal Cost Calculator",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
