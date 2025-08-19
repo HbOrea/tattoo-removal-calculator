@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "How Much Does Tattoo Removal Cost? | Free Price Calculator 2025",
-  description: "Calculate tattoo removal cost instantly. Learn how much does tattoo removal cost based on size, location, and treatment method. Get accurate pricing estimates and professional guidance.",
+  title: "Tattoo Removal Cost Calculator | Free Price Tool 2025",
+  description: "Calculate tattoo removal cost instantly. Get accurate pricing estimates based on size, location, and treatment method. Free calculator with guidance.",
   keywords: "tattoo removal cost, how much does tattoo removal cost, laser tattoo removal price, tattoo removal pricing, tattoo removal calculator",
   icons: {
     icon: '/favicon-minimal.svg',
@@ -23,8 +23,8 @@ export const metadata: Metadata = {
     apple: '/favicon-minimal.svg',
   },
   openGraph: {
-    title: "How Much Does Tattoo Removal Cost? | Free Price Calculator 2025",
-    description: "Calculate tattoo removal cost instantly. Learn how much does tattoo removal cost based on size, location, and treatment method. Get accurate pricing estimates and professional guidance.",
+    title: "Tattoo Removal Cost Calculator | Free Price Tool 2025",
+    description: "Calculate tattoo removal cost instantly. Get accurate pricing estimates based on size, location, and treatment method. Free calculator with guidance.",
     type: "website",
     locale: "en_US",
     url: "https://www.tattoo-removal-calculator.com/",
@@ -32,8 +32,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "How Much Does Tattoo Removal Cost? | Free Price Calculator 2025",
-    description: "Calculate tattoo removal cost instantly. Learn how much does tattoo removal cost based on size, location, and treatment method.",
+    title: "Tattoo Removal Cost Calculator | Free Price Tool 2025",
+    description: "Calculate tattoo removal cost instantly. Get accurate pricing estimates based on size, location, and treatment method. Free calculator with guidance.",
   },
   robots: {
     index: true,
