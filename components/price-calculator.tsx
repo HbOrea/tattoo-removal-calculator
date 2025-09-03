@@ -978,7 +978,7 @@ export function PriceCalculator() {
                     <div className="flex justify-between items-center text-sm bg-white rounded-lg p-4 border border-slate-200">
                       <span className="text-slate-700 font-medium">Selected Location</span>
                       <span className="font-bold text-slate-900 text-lg">
-                        {countries[tattooData.country as keyof typeof countries]?.name} - {countries[tattooData.country as keyof typeof countries]?.regions[tattooData.region]}
+                        {countries[tattooData.country as keyof typeof countries]?.name} - {countries[tattooData.country as keyof typeof countries]?.regions[tattooData.region as any]}
                       </span>
                     </div>
                     <div className="flex justify-between items-center text-sm bg-white rounded-lg p-4 border border-slate-200">
