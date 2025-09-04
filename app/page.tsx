@@ -17,7 +17,9 @@ export default function Home() {
         <Header />
         
         {/* 面包屑导航 */}
-        <Breadcrumb />
+        <Breadcrumb items={[
+          { label: "Home", href: "/" }
+        ]} />
         
         {/* 英雄区域 */}
         <div className="relative py-16 px-6">

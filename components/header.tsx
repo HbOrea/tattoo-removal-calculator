@@ -3,6 +3,7 @@
 import { Calculator, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
+import Link from "next/link"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -27,11 +28,11 @@ export function Header() {
             <a href="#process" className="text-slate-600 hover:text-slate-900 transition-colors font-medium">
               Treatment Process
             </a>
+            <Link href="/blog" className="text-slate-600 hover:text-slate-900 transition-colors font-medium">
+              Blog
+            </Link>
             <a href="#faq" className="text-slate-600 hover:text-slate-900 transition-colors font-medium">
               FAQ
-            </a>
-            <a href="#about" className="text-slate-600 hover:text-slate-900 transition-colors font-medium">
-              About Us
             </a>
           </nav>
 
@@ -73,19 +74,19 @@ export function Header() {
               >
                 Treatment Process
               </a>
+              <Link 
+                href="/blog" 
+                className="text-slate-600 hover:text-slate-900 transition-colors font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Blog
+              </Link>
               <a 
                 href="#faq" 
                 className="text-slate-600 hover:text-slate-900 transition-colors font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 FAQ
-              </a>
-              <a 
-                href="#about" 
-                className="text-slate-600 hover:text-slate-900 transition-colors font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                About Us
               </a>
               <Button asChild className="w-full bg-slate-900 hover:bg-slate-800 text-white">
                 <a href="#calculator" onClick={() => setIsMenuOpen(false)}>Start Calculation</a>

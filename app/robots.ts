@@ -18,7 +18,7 @@ export default function robots(): MetadataRoute.Robots {
     'YouBot',
   ]
 
-  const aiAllows = ['/llms.txt', '/', '/privacy/', '/terms/']
+  const aiAllows = ['/llms.txt', '/', '/blog/', '/privacy/', '/terms/']
   const aiDisallows = ['/user-content/']
 
   return {
