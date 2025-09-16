@@ -58,6 +58,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { getBlogPost } = await import('@/lib/blog-data');
   const resolvedParams = await params;
   const article = getBlogPost(resolvedParams.slug);
+  const { notFound } = await import('next/navigation');
+  if (!article) {
+    notFound();
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
