@@ -2,11 +2,17 @@
 
 import { Calculator, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { GoogleAuthButton } from "@/components/auth/google-auth-button"
 import { useState } from "react"
 import Link from "next/link"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  
+  // 检查Supabase环境变量是否存在
+  const hasSupabaseConfig = 
+    !!process.env.NEXT_PUBLIC_SUPABASE_URL && 
+    !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
   return (
     <header className="bg-white/90 backdrop-blur-sm shadow-sm border-b border-slate-200 sticky top-0 z-50">
@@ -36,8 +42,10 @@ export function Header() {
             </a>
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
+          {/* CTA Buttons */
+          }
+          <div className="hidden md:flex items-center gap-3">
+            {hasSupabaseConfig && <GoogleAuthButton />}
             <Button asChild className="bg-slate-900 hover:bg-slate-800 text-white">
               <a href="#calculator">Start Calculation</a>
             </Button>
@@ -88,6 +96,11 @@ export function Header() {
               >
                 FAQ
               </a>
+              {hasSupabaseConfig && (
+                <div className="px-2">
+                  <GoogleAuthButton />
+                </div>
+              )}
               <Button asChild className="w-full bg-slate-900 hover:bg-slate-800 text-white">
                 <a href="#calculator" onClick={() => setIsMenuOpen(false)}>Start Calculation</a>
               </Button>
