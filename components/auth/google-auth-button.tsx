@@ -7,7 +7,11 @@ import { createClient } from "@/utils/supabase/client"
 type AuthUser = {
   id: string
   email?: string
-  user_metadata?: Record<string, any>
+  user_metadata?: {
+    name?: string
+    full_name?: string
+    [key: string]: unknown
+  }
 }
 
 export function GoogleAuthButton() {
@@ -31,7 +35,6 @@ export function GoogleAuthButton() {
 
   useEffect(() => {
     const supabase = createClient()
-    let unsub: (() => void) | undefined
     // initial get session user
     supabase.auth.getUser().then(({ data }) => {
       if (data?.user) {
@@ -56,9 +59,8 @@ export function GoogleAuthButton() {
         setUser(null)
       }
     })
-    unsub = () => sub?.subscription.unsubscribe()
     return () => {
-      unsub?.()
+      sub?.subscription.unsubscribe()
     }
   }, [])
 
