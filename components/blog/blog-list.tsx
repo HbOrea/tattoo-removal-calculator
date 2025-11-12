@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { blogPosts } from "@/lib/blog-data";
+import Image from "next/image";
 
 export function BlogList() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -30,10 +31,12 @@ export function BlogList() {
             {/* 特色图片 */}
             <div className="relative h-48 bg-slate-200">
               {post.featuredImage ? (
-                <img
+                <Image
                   src={post.featuredImage}
                   alt={post.title}
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
               ) : (
                 <div className="absolute inset-0 bg-gradient-to-br from-slate-400 to-slate-600 flex items-center justify-center">

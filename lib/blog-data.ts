@@ -34,7 +34,7 @@ export const blogPosts: BlogPost[] = [
       <h2>Average Cost of Tattoo Removal</h2>
       <p>The cost of tattoo removal varies significantly depending on your location, the clinic you choose, and the specifics of your tattoo. However, here are the current industry standards:</p>
       
-      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Tattoo removal laser treatment" class="w-full h-64 object-cover rounded-lg mb-6" />
+      <img src="https://cdn.tattoo-removal-calculator.com/pic/pic1.png" alt="Tattoo removal laser treatment" class="w-full h-auto max-h-96 object-cover rounded-lg mb-6" />
       
       <h3>Per Session Costs:</h3>
       <ul>
@@ -61,7 +61,7 @@ export const blogPosts: BlogPost[] = [
       <h3>Color Complexity</h3>
       <p>Not all ink colors are created equal when it comes to removal. Black and red inks are typically the easiest and cheapest to remove, while colors like yellow, green, and fluorescent inks require more sessions and specialized laser wavelengths, increasing the overall cost.</p>
       
-      <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Colorful tattoo showing different ink colors" class="w-full h-48 object-cover rounded-lg mb-4" />
+      <img src="https://cdn.tattoo-removal-calculator.com/pic/pic2.png" alt="Colorful tattoo showing different ink colors" class="w-full h-auto max-h-80 object-cover rounded-lg mb-4" />
       
       <h3>Tattoo Age and Quality</h3>
       <p>Interestingly, older tattoos are often less expensive to remove than newer ones. Professional tattoos with high-quality, deeply embedded ink require more sessions than amateur tattoos with lighter ink application.</p>
@@ -148,7 +148,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>The key is finding a reputable provider who can give you a realistic assessment of your specific situation, including the number of sessions needed and total expected cost. With proper planning and realistic expectations, tattoo removal can be a worthwhile investment in your personal satisfaction and future opportunities.</p>
     `,
-    featuredImage: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    featuredImage: "https://cdn.tattoo-removal-calculator.com/pic/pic3.jpg",
     category: "Cost Guide",
     tags: ["cost", "pricing", "laser treatment", "guide", "sessions", "investment"],
     publishedAt: "2025-09-04",

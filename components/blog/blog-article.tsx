@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { getBlogPost } from "@/lib/blog-data";
+import Image from "next/image";
 
 interface BlogArticleProps {
   slug: string;
@@ -54,10 +55,13 @@ export function BlogArticle({ slug }: BlogArticleProps) {
       {/* 封面图片 */}
       {article.featuredImage && (
         <div className="relative h-64 md:h-80">
-          <img
+          <Image
             src={article.featuredImage}
             alt={article.title}
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 100vw"
+            priority
           />
         </div>
       )}

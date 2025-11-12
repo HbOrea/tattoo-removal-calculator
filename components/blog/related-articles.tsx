@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { getRelatedPosts } from "@/lib/blog-data";
+import Image from "next/image";
 
 interface RelatedArticlesProps {
   currentSlug: string;
@@ -20,10 +21,12 @@ export function RelatedArticles({ currentSlug }: RelatedArticlesProps) {
             {/* 封面图片 */}
             {article.featuredImage && (
               <div className="relative h-32 bg-slate-200">
-                <img
+                <Image
                   src={article.featuredImage}
                   alt={article.title}
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
             )}
